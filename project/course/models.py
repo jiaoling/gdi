@@ -5,6 +5,7 @@ from django.db.models import permalink
 
 
 class Instructor(models.Model):
+    user = models.OneToOneField(User, null=True)
     f_name = models.CharField(max_length=80)
     l_name = models.CharField(max_length=80)
     password = models.CharField(max_length=20)

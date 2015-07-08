@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('course', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='instructor',
+            name='pic',
+            field=models.ImageField(default=b'path/to/my/default/image.jpg', upload_to=b'blah'),
+        ),
+        migrations.AlterField(
+            model_name='course',
+            name='meetup_page',
+            field=models.URLField(),
+        ),
+        migrations.AlterField(
+            model_name='instructor',
+            name='git',
+            field=models.URLField(max_length=100),
+        ),
+        migrations.AlterField(
+            model_name='instructor',
+            name='twitter',
+            field=models.URLField(max_length=100),
+        ),
+        migrations.AlterField(
+            model_name='instructor',
+            name='website',
+            field=models.URLField(max_length=100),
+        ),
+    ]

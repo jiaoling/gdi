@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<table>
+    <tr>
+        <th>Course></th>
+        <th>Instructor></th>
+        <th>Level</th>
+        <th>Start Date</th>
+        <th>End Date></th>
+        <th>MeetUp Link</th>
+        <th>Topic</th>
+    </tr>
+    {% if courses %}
+    {%for course in courses %}
+    <tr>
+        <td><a href="{% url course_view pk=course.pk %}">{{course.c_name}}</a></td>
+        <td>{{course.instructor}}</td>
+        <td>{{course.level}}</td>
+        <td>{{course.start_date}}</td>
+        <td>{{course.end_date}}</td>
+        <td>{{course.meetup_page}}</td>
+        <td>{{course.topic}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

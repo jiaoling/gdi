@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content%}
+<p>{{course.c_name}}</p>
+ <div id='content'>
+        <div id='left' style="float:left width:70%">
+          <p>Start Date:{{course.start_date}} &nbsp&nbsp&nbsp End Date:{{course.end_date}} &nbsp&nbsp&nbsp Level:{{course.level}} &nbsp&nbsp&nbsp
+          <a href={{course.meetup_page}}>MeetUp Link</a></p>
+
+         <p>Description:{{course.description}}</p>
+         <p>Prerequisite:{{course.prerequisite}}</p>
+
+          <div id='materials'>
+            <p>Materials</p>
+              {%if material_slide%}
+                {% for slide in material_slide%}
+                    <p>Slides: {{slide.name}} &nbsp&nbsp&nbsp</p>
+                {% endfor%}
+              {%endif%}
+
+            <div id='code'>
+              {% if material_code%}
+                {% for code in material_code%}
+                    <p>Codes: {{code.name}}&nbsp&nbsp&nbsp</p>
+                {% endfor%}
+              {% endif%}
+
+        <div id='right' style="float:right">
+          Autumn Welles
+        </div>
+      </div>
+
+  <body>
+<html>
+{% endblock %}

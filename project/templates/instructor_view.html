@@ -1,0 +1,17 @@
+<!--because this relies on having a list of classes for each instructor, a list of classes needs to be created with a QuerySet in the view. Actually, that view can probably filter out based on Instructor? which would render the if clause here redundant -->
+
+{% extends "base.html" %}
+{% block content %}
+<img src="instructor.pic" /><h1>{{instructor.f_name}} {{instructor.l_name}}</h1>
+<div class="instructor-contact"><div class="contact-menu">Email: {{instructor.email}}</div><div class="contact-menu">Twitter: {{instructor.twitter}}</div><div class="contact-menu">Website: {{instructor.website}} </div><div class="contact-menu">GitHub: {{instructor.git}}</div>
+<h2>Bio</h2>
+<p>{{instructor.bio}}</p>
+<h2>Courses Taught</h2>
+<table>
+    {% if courses %}
+	{% for course in courses %}
+	<tr><td>{{course.start_date}}</td><td>{{course.c_name}}</td></tr>
+	{% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

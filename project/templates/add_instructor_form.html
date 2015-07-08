@@ -1,0 +1,50 @@
+{% extends '_base.html'%}
+
+{% block content %}
+<h2>Add a New Instructor</h2>
+<form>
+First name:<br>
+<input type="text" name="first_name">
+<br>
+Last name:<br>
+<input type="text" name="last_name">
+<br>
+Password:<br>
+<input type="text" name="password">
+<br>
+Email:<br>
+<input type="text" name="email">
+<br>
+Twitter:<br>
+<input type="text" name="twitter">
+<br>
+Website:<br>
+<input type="text" name="website">
+<br>
+Git:<br>
+<input type="text" name="git">
+<br>
+Bio:<br>
+<input type="text" name="bio">
+<br>
+Admin:<br>
+<input type="radio" name="admin" value="yes" checked> Yes
+<input type="radio" name="admin" value="no">No
+<br><br>
+<input type="submit" value="Submit">
+</form>
+
+{% endblock %}
+
+
+<!-- 
+    class Instructor(models.Model):
+    f_name = models.CharField(max_length=80)
+    l_name = models.CharField(max_length=80)
+    password = models.CharField(max_length=20)
+    email = models.CharField(max_length=100)
+    twitter = models.URLField(max_length=100)
+    website = models.URLField(max_length=100)
+    git = models.URLField(max_length=100)
+    bio = models.TextField()
+    admin = models.BooleanField(default=False)-->

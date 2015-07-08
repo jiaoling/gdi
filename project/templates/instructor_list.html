@@ -1,0 +1,16 @@
+<!-- because this relies on having a list of instructors, the view will need to include a QuerySet for the instructors (sort by admin, then by lname, then by fname?) and that will need to be passed into this-->
+
+{% extends "base.html" %}
+{% block content %}
+<h1>Instructors List</h1>
+{% if instructors %}
+{% for instructor in instructors %}
+<div class="instructor-box">
+	<img src="{{instructor.pic}}" />
+	<div class="instructor-list-text"><p>{{instructor.f_name}} {{instructor.l_name}}</p>
+		<p>{{instructor.bio}}</p>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

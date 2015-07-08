@@ -7,7 +7,9 @@
 {% for instructor in instructors %}
 <div class="instructor-box">
 	<img src="{{instructor.pic}}" />
-	<div class="instructor-list-text"><p>{{instructor.f_name}} {{instructor.l_name}}</p>
+	<div class="instructor-list-text">
+        <p><a href="/instructor/{{instructor.f_name|slugify}}{{instructor.l_name|slugify}}-{{instructor.pk}}">
+            {{instructor.f_name}} {{instructor.l_name}}</a></p>
 		<p>{{instructor.bio}}</p>
 	</div>
 </div>

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404,get_list_or_404
 
 from django.http import HttpResponse
 from django.template import Context, loader
-from course.models import Course, Instructor, Material
+from course.models import *
 
 
 def course_list(request):
@@ -20,6 +20,3 @@ def course_view(request,slug, pk):
                                                 'pk':pk,
                                                 'material_slide':material_slide,
                                                 'material_code':material_code})
-def redirect_to_page(request, pk):
-    course = get_object_or_404(Course, pk=pk)
-    return render(request, 'course_view.html', {'course_page':course, 'pk':pk})

@@ -10,7 +10,7 @@
 <table>
     {% if courses %}
 	{% for course in courses %}
-	<tr><td>{{course.start_date}}</td><td>{{course.c_name}}</td></tr>
+	<tr><td>{{course.start_date}}</td><td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</td></tr>
 	{% endfor %}
     {% endif %}
 </table>

@@ -22,6 +22,7 @@ class Instructor(models.Model):
         name = self.f_name + self.l_name
         return name
 
+
     @permalink
     def get_absolute_url(self):
         return('instructors', (), {

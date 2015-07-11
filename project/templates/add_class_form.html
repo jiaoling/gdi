@@ -1,48 +1,19 @@
-{% extends '_base.html'%}
+{% extends 'base.html'%}
 
 {% block content %}
 <h2>Add a New Class</h2>
-<form>
-Course name:<br>
-<input type="text" name="course_name">
-<br>
-Instructor:<br>
-<input type="text" name="instructor">
-<br>
-Level:<br>
-<input type="text" name="level">
-<br>
-Start date:<br>
-<input type="text" name="start_date">
-<br>
-End date:<br>
-<input type="text" name="end_date">
-<br>
-Meetup link:<br>
-<input type="text" name="meetup">
-<br>
-Topic:<br>
-<input type="text" name="topic">
-<br>
-Description:<br>
-<input type="text" name="description">
-<br>
-Prerequisite:<br>
-<input type="text" name="prerequisite">
-<br><br>
+<form action="" method="post">{% csrf_token %}
+    {{form.non_field_errors}}
+    {% for field in form %}
+        <div class="field_container">
+            {{field.errors}}
+            {{field.label_tag}}</div>
+            {{field}}
+        </div>
+    {% endfor %}
 <input type="submit" value="Submit">
+<a href="/course/"><input type="button" value="cancel" /></a>
+
 </form>
 
 {% endblock %}
-
-
-<!-- 
-    c_name = models.CharField(max_length=100)
-    instructor = models.ManyToManyField(Instructor)
-    level = models.CharField(max_length=20)
-    start_date = models.DateTimeField(blank=True, null=True)
-    end_date = models.DateTimeField(blank=True, null=True)
-    meetup_page = models.URLField(max_length=200)
-    topic = models.ForeignKey(Topic)
-    description = models.TextField()
-    prerequisite = models.TextField() -->

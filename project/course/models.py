@@ -1,13 +1,10 @@
 from django.db import models
 
-from django.contrib.auth.models import User
-
 # Create your models here.
 from django.db.models import permalink
 
 
 class Instructor(models.Model):
-    user = models.OneToOneField(User, null=True)
     f_name = models.CharField(max_length=80)
     l_name = models.CharField(max_length=80)
     password = models.CharField(max_length=20)
@@ -24,7 +21,6 @@ class Instructor(models.Model):
     def __unicode__(self):
         name = self.f_name + self.l_name
         return name
-
 
     @permalink
     def get_absolute_url(self):

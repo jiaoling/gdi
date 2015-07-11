@@ -12,6 +12,7 @@
     </tr>
     {% if courses %}
     {%for course in courses %}
+<<<<<<< HEAD
     <tr>
         <td><a href="{% url course_view pk=course.pk %}">{{course.c_name}}</a></td>
         <td>{{course.instructor}}</td>
@@ -21,6 +22,17 @@
         <td>{{course.meetup_page}}</td>
         <td>{{course.topic}}</td>
     </tr>
+=======
+        <tr>
+            <td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</a></td>
+            <td><a href="/instructor/{{course.instructor|slugify}}-{{course.instructor.pk}}">{{course.instructor}}</a></td>
+            <td>{{course.level}}</td>
+            <td>{{course.start_date}}</td>
+            <td>{{course.end_date}}</td>
+            <td><a href="{{course.meetup_page}}"> {{course.meetup_page}}</a></td>
+            <td>{{course.topic}}</td>
+        </tr>
+>>>>>>> july_11th_branch
     {% endfor %}
     {% endif %}
 </table>

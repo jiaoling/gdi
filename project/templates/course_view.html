@@ -1,34 +1,45 @@
 {% extends "base.html" %}
+
 {% block content%}
-<p>{{course.c_name}}</p>
- <div id='content'>
+{% if course%}
+    <p>{{course.c_name}}</p>
+    <!--buttons-->
+    <a href="/course/edit/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="Edit Your Course" /></a>
+    <a href="/course/delete/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="Delete This Course" /></a>
+    <a href="/course/create"><input type="button" value="Create a New Course" /></a>
+    <div id='content'>
         <div id='left' style="float:left width:70%">
           <p>Start Date:{{course.start_date}} &nbsp&nbsp&nbsp End Date:{{course.end_date}} &nbsp&nbsp&nbsp Level:{{course.level}} &nbsp&nbsp&nbsp
           <a href={{course.meetup_page}}>MeetUp Link</a></p>
+          <p>Description:{{course.description}}</p>
+          <p>Prerequisite:{{course.prerequisite}}</p>
+        </div>
 
-         <p>Description:{{course.description}}</p>
-         <p>Prerequisite:{{course.prerequisite}}</p>
-
-          <div id='materials'>
+        <div id='materials'>
             <p>Materials</p>
+            <!--add editing button for materials-->
               {%if material_slide%}
                 {% for slide in material_slide%}
                     <p>Slides: {{slide.name}} &nbsp&nbsp&nbsp</p>
                 {% endfor%}
+              {% else %}
+                <p> No record</p>
               {%endif%}
-
-            <div id='code'>
+        </div>
+        <div id='code'>
               {% if material_code%}
                 {% for code in material_code%}
                     <p>Codes: {{code.name}}&nbsp&nbsp&nbsp</p>
                 {% endfor%}
               {% endif%}
-
-        <div id='right' style="float:right">
-          Autumn Welles
         </div>
-      </div>
-
-  <body>
-<html>
+        <div id='right' style="float:right">
+<<<<<<< HEAD
+          Autumn Welles
+=======
+          <a href="/instructor/{{course.instructor.f_name|slugify}}-{{course.instructor.l_name|slugify}}-{{course.instructor.pk}}">aaa AAA</a>
+>>>>>>> july_11th_branch
+        </div>
+    </div>
+{% endif %}
 {% endblock %}

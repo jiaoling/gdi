@@ -3,6 +3,7 @@
 {% extends "base.html" %}
 {% block content %}
 <img src="instructor.pic" /><h1>{{instructor.f_name}} {{instructor.l_name}}</h1>
+<p><a href="/instructor/edit/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}"><input type="button" value="Edit Your Profile" /></a></p>
 <div class="instructor-contact"><div class="contact-menu">Email: {{instructor.email}}</div><div class="contact-menu">Twitter: {{instructor.twitter}}</div><div class="contact-menu">Website: {{instructor.website}} </div><div class="contact-menu">GitHub: {{instructor.git}}</div>
 <h2>Bio</h2>
 <p>{{instructor.bio}}</p>
@@ -10,8 +11,13 @@
 <table>
     {% if courses %}
 	{% for course in courses %}
+<<<<<<< HEAD
 	<tr><td>{{course.start_date}}</td><td>{{course.c_name}}</td></tr>
+=======
+	<tr><td>{{course.start_date}}</td><td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</a></td></tr>
+>>>>>>> july_11th_branch
 	{% endfor %}
     {% endif %}
 </table>
+</div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Delete Stuff{% endblock %}
+{% block content %}
+    <h2>Delete Course</h2>
+    <p>Are you sure you want to delete this {{ Course }}?</p>
+
+    <form action="{{ delete_course}}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete" />
+      <a href="/course/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="Cancel" /></a>
+    </form>
+{% endblock %}

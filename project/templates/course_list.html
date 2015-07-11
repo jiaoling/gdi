@@ -14,7 +14,7 @@
     {%for course in courses %}
         <tr>
             <td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</a></td>
-            <td><a href="/instructor/{{course.instructor|slugify}}-{{course.instructor.pk}}">{{course.instructor}}</a></td>
+            <td><a href="/instructor/{{course.instructor.f_name|slugify}}-{{course.instructor.l_name|slugify}}-{{course.instructor.pk}}">{{course.instructor}}</a></td>
             <td>{{course.level}}</td>
             <td>{{course.start_date}}</td>
             <td>{{course.end_date}}</td>

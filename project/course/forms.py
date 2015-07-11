@@ -14,4 +14,3 @@ class MaterialForm(forms.ModelForm):
         model = Material
         fields ='__all__'
 
-        

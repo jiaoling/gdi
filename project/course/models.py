@@ -60,7 +60,7 @@ class Course(models.Model):
 class Material(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=20)
-    course_id = models.ForeignKey(Course)
+    course = models.ForeignKey(Course)
     date = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):

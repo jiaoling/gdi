@@ -22,7 +22,7 @@ def course_view(request,slug, pk):
                                                 'material_slide':material_slide,
                                                 'material_code':material_code})
 
-
+# course
 def create_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
@@ -50,3 +50,15 @@ def delete_course(request, slug, course_id):
         course.delete()
         return redirect('/course/')
     return render(request, 'delete_class_form.html', {'course': course})
+
+#material
+def edit_material(request,slug, material_id):
+    material = get_object_or_404(Material, pk=material_id)
+    if request.method == 'POST':
+        form = MaterialForm(request.POST, instance=material)
+        if form.is_valid():
+            form.save()
+            return redirect('course_view', slug=slug, pk=material_id)
+    else:
+        form = MaterialForm(instance=material)
+    return render(request, 'edit_material_form.html', {'form': form, 'material':material })

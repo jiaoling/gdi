@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template import Context, loader
 from course.models import *
 from course.forms import *
+from slugify import slugify
 
 
 def course_list(request):
@@ -55,10 +56,10 @@ def delete_course(request, slug, course_id):
 def edit_material(request,slug, material_id):
     material = get_object_or_404(Material, pk=material_id)
     if request.method == 'POST':
-        form = MaterialForm(request.POST, instance=material)
+        form = MaterialForm(request.POST,request.FILES, instance=material)
         if form.is_valid():
             form.save()
-            return redirect('course_view', slug=slug, pk=material_id)
+            return redirect('course_view', slug=slugify(material.course.c_name), pk=material.course.pk)
     else:
         form = MaterialForm(instance=material)
     return render(request, 'edit_material_form.html', {'form': form, 'material':material })

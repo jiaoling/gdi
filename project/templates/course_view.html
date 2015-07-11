@@ -20,7 +20,7 @@
                      <!--add editing button for materials-->
               {%if material_slide%}
                 {% for slide in material_slide%}
-                    <p>Slides: {{slide.name}} &nbsp&nbsp&nbsp</p>
+                    <p><a href="{{slide.content.url}}">Slides: {{slide.name}} </a>&nbsp&nbsp&nbsp</p>
                     <a href="/course/material_edit/{{slide.name|slugify}}-{{slide.pk}}"><input type="button" value="Edit Your Material" /></a>
                 {% endfor%}
               {% else %}
@@ -30,7 +30,7 @@
         <div id='code'>
               {% if material_code%}
                 {% for code in material_code%}
-                    <p>Codes: {{code.name}}&nbsp&nbsp&nbsp</p>
+                    <p><a href="{{code.content.url}}">Codes: {{code.name}}</a>&nbsp&nbsp&nbsp</p>
                     <a href="/course/material_edit/{{code.name|slugify}}-{{code.pk}}"><input type="button" value="Edit Your Material" /></a>
                 {% endfor%}
               {% endif%}

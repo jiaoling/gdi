@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 from django.db.models import permalink
+from time import time
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
+def generate_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    return 'stuff_images/'+str(int(time()))+'.'+ext
 
 
 class Instructor(models.Model):
@@ -15,7 +22,7 @@ class Instructor(models.Model):
     git = models.URLField(max_length=100)
     bio = models.TextField()
     admin = models.BooleanField(default=False)
-    pic = models.ImageField(upload_to='blah', default='path/to/my/default/image.jpg')
+    pic = models.ImageField(upload_to=generate_filename)
 
 
     def __unicode__(self):
@@ -29,6 +36,13 @@ class Instructor(models.Model):
             'slug': self.name,
             'pk':self.pk,
         })
+
+@receiver(post_delete, sender=Instructor)
+def stuff_post_delete_handler(sender, **kwargs):
+    Instructor = kwargs['instance']
+    storage,path = Instructor.stuff_image.storage, Instructor.stuff_image.path
+    storage.delete(path)
+
 
 class Topic(models.Model):
     name = models.CharField(max_length=20)
@@ -65,4 +79,5 @@ class Material(models.Model):
 
     def __unicode__(self):
         return self.name
+
 

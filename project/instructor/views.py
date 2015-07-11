@@ -14,7 +14,7 @@ def instructor_list(request):
     c = Context({'instructors': instructors,})
     return HttpResponse(t.render(c))
 
-def instructor_view(request,slug1,slug2, pk):
+def instructor_view(request, slug1, slug2, pk):
     instructor = get_object_or_404(Instructor, pk=pk)
     courses = Course.objects.all().filter(instructor = pk)
     return render(request, 'instructor_view.html', {'instructor':instructor, 'courses':courses} )
@@ -33,10 +33,10 @@ def create_instructor(request):
 def edit_instructor(request, slug1, slug2, instructor_id):
     instructor = get_object_or_404(Instructor, pk=instructor_id)
     if request.method == 'POST':
-        form = InstructorForm(request.POST, instance=instructor)
+        form = InstructorForm(request.POST, request.FILES, instance=instructor)
         if form.is_valid():
             form.save()
-            return redirect('instructor_view', slug1=slug1, slug2=slug2, pk=instructor_id)
+            return redirect("instructor_view", slug1=slug1, slug2=slug2, pk=instructor_id)
     else:
         form = InstructorForm(instance=instructor)
     return render(request, 'edit_instructor_form.html', {'form': form, 'instructor':instructor })

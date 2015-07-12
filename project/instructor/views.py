@@ -47,3 +47,4 @@ def delete_instructor(request, slug1,slug2, instructor_id):
         instructor.delete()
         return redirect('/instructor/')
     return render(request, 'delete_instructor_form.html', {'instructor': instructor})
+

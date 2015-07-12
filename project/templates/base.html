@@ -2,6 +2,10 @@
 <html>
   <head>
     <title> Course Homepage</title>
+    {% if user.is_authenticated %}
+     # need to pop out the username once logged in
+    <h1> hello {{ user.username }}</h1>
+    {% endif %}
   </head>
   <body>
     <nav>
@@ -9,7 +13,9 @@
       <a href="/course/">Courses</a> |
       <a href="/instructor">Instructors</a> |
       <a href="/getting_started">Getting Started</a>
-        <a href="#">Log In</a>
+      <a href="/login/">Log In</a>
+      <a href="/register/">Register Here</a>
+      <a href="/logout/">Logout</a>
     </nav>
 
     {% block content%}

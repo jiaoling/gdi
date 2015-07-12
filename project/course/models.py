@@ -6,23 +6,26 @@ from time import time
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
+from django.contrib.auth.models import User
+
 def generate_imagename(instance, filename):
     ext = filename.split('.')[-1]
     return 'stuff_images/'+str(int(time()))+'.'+ext
 
 
 class Instructor(models.Model):
+    user = models.OneToOneField(User, null=True)
     f_name = models.CharField(max_length=80)
     l_name = models.CharField(max_length=80)
     password = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
     ### how to link a link ????
-    twitter = models.URLField(max_length=100)
-    website = models.URLField(max_length=100)
-    git = models.URLField(max_length=100)
-    bio = models.TextField()
+    twitter = models.URLField(max_length=100, null=True)
+    website = models.URLField(max_length=100, null=True)
+    git = models.URLField(max_length=100, null=True)
+    bio = models.TextField(null=True)
     admin = models.BooleanField(default=False)
-    pic = models.ImageField(upload_to=generate_imagename)
+    pic = models.ImageField(upload_to=generate_imagename, null=True)
 
 
     def __unicode__(self):

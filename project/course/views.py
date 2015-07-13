@@ -1,17 +1,9 @@
 from django.shortcuts import render, get_object_or_404,get_list_or_404, redirect
-
 from django.http import HttpResponse
 from django.template import Context, loader
-<<<<<<< HEAD
-from course.models import Course, Instructor, Material
-=======
 from course.models import *
 from course.forms import *
-<<<<<<< HEAD
->>>>>>> july_11th_branch
-=======
 from slugify import slugify
->>>>>>> user_authentication_branch
 
 
 def course_list(request):
@@ -29,11 +21,10 @@ def course_view(request,slug, pk):
                                                 'pk':pk,
                                                 'material_slide':material_slide,
                                                 'material_code':material_code})
-<<<<<<< HEAD
+
 def redirect_to_page(request, pk):
     course = get_object_or_404(Course, pk=pk)
     return render(request, 'course_view.html', {'course_page':course, 'pk':pk})
-=======
 
 # course
 # def create_course(request):
@@ -91,9 +82,4 @@ def delete_material(request, slug, material_id):
     if request.method == 'POST':
         material.delete()
         return redirect('/course/')
-<<<<<<< HEAD
-    return render(request, 'delete_class_form.html', {'course': course})
->>>>>>> july_11th_branch
-=======
     return render(request, 'material_form/delete_material_form.html', {'material': material})
->>>>>>> user_authentication_branch

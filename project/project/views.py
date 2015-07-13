@@ -1,4 +1,3 @@
-__author__ = 'cjlchaos'
 
 from django.shortcuts import render
 from instructor.forms import *
@@ -7,8 +6,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
-# by tango with djangp tutorial
+
+
+# following the tutorial of tango with django
 def register(request):
+    if request.session.test_cookie_worked():
+        print ">>>> TEST COOKIE WORKED!"
+        request.session.delete_test_cookie()
+
     # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False

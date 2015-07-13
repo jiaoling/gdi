@@ -20,5 +20,4 @@ urlpatterns=patterns(
         name='delete_instructor'),
 
 
-
     )

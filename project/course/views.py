@@ -24,15 +24,15 @@ def course_view(request,slug, pk):
                                                 'material_code':material_code})
 
 # course
-def create_course(request):
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/course/')
-    else:
-        form = CourseForm()
-    return render(request, 'add_class_form.html', {'form': form})
+# def create_course(request):
+#     if request.method == 'POST':
+#         form = CourseForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/course/')
+#     else:
+#         form = CourseForm()
+#     return render(request, 'course_form/add_class_form.html', {'form': form})
 
 def edit_course(request, slug, course_id):
     course = get_object_or_404(Course, pk=course_id)
@@ -43,16 +43,26 @@ def edit_course(request, slug, course_id):
             return redirect('course_view', slug=slug, pk=course_id)
     else:
         form = CourseForm(instance=course)
-    return render(request, 'edit_class_form.html', {'form': form, 'course':course })
+    return render(request, 'course_form/edit_class_form.html', {'form': form, 'course':course })
 
-def delete_course(request, slug, course_id):
-    course = get_object_or_404(Course, pk=course_id)
-    if request.method == 'POST':
-        course.delete()
-        return redirect('/course/')
-    return render(request, 'delete_class_form.html', {'course': course})
+# def delete_course(request, slug, course_id):
+#     course = get_object_or_404(Course, pk=course_id)
+#     if request.method == 'POST':
+#         course.delete()
+#         return redirect('/course/')
+#     return render(request, 'course_form/delete_class_form.html', {'course': course})
 
 #material
+def create_material(request):
+    if request.method == 'POST':
+        form = MaterialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/course/')
+    else:
+        form = MaterialForm()
+    return render(request, 'material_form/add_material_form.html', {'form': form})
+
 def edit_material(request,slug, material_id):
     material = get_object_or_404(Material, pk=material_id)
     if request.method == 'POST':
@@ -62,4 +72,11 @@ def edit_material(request,slug, material_id):
             return redirect('course_view', slug=slugify(material.course.c_name), pk=material.course.pk)
     else:
         form = MaterialForm(instance=material)
-    return render(request, 'edit_material_form.html', {'form': form, 'material':material })
+    return render(request, 'material_form/edit_material_form.html', {'form': form, 'material':material })
+
+def delete_material(request, slug, material_id):
+    material = get_object_or_404(Material, pk=material_id)
+    if request.method == 'POST':
+        material.delete()
+        return redirect('/course/')
+    return render(request, 'material_form/delete_material_form.html', {'material': material})

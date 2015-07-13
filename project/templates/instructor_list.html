@@ -6,7 +6,7 @@
 {% if instructors %}
 {% for instructor in instructors %}
 <div class="instructor-box">
-	<img src="{{instructor.pic}}" width="200" />
+	<img src="{{instructor.pic.url}}" width="200" />
 	<div class="instructor-list-text">
         <p><a href="/instructor/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}">
             {{instructor.f_name}} {{instructor.l_name}}</a></p>

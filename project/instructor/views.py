@@ -14,36 +14,37 @@ def instructor_list(request):
     c = Context({'instructors': instructors,})
     return HttpResponse(t.render(c))
 
-def instructor_view(request,slug1,slug2, pk):
+def instructor_view(request, slug1, slug2, pk):
     instructor = get_object_or_404(Instructor, pk=pk)
     courses = Course.objects.all().filter(instructor = pk)
     return render(request, 'instructor_view.html', {'instructor':instructor, 'courses':courses} )
 
 
-def create_instructor(request):
-    if request.method == 'POST':
-        form = InstructorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/instructor/')
-    else:
-        form = InstructorForm()
-    return render(request, 'add_instructor_form.html', {'form': form})
+# def create_instructor(request):
+#     if request.method == 'POST':
+#         form = InstructorForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/instructor/')
+#     else:
+#         form = InstructorForm()
+#     return render(request, 'instructor_form/add_instructor_form.html', {'form': form})
 
 def edit_instructor(request, slug1, slug2, instructor_id):
     instructor = get_object_or_404(Instructor, pk=instructor_id)
     if request.method == 'POST':
-        form = InstructorForm(request.POST, instance=instructor)
+        form = InstructorForm(request.POST, request.FILES, instance=instructor)
         if form.is_valid():
             form.save()
-            return redirect('instructor_view', slug1=slug1, slug2=slug2, pk=instructor_id)
+            return redirect("instructor_view", slug1=slug1, slug2=slug2, pk=instructor_id)
     else:
         form = InstructorForm(instance=instructor)
-    return render(request, 'edit_instructor_form.html', {'form': form, 'instructor':instructor })
+    return render(request, 'instructor_form/edit_instructor_form.html', {'form': form, 'instructor':instructor })
 
-def delete_instructor(request, slug1,slug2, instructor_id):
-    instructor = get_object_or_404(Instructor, pk=instructor_id)
-    if request.method == 'POST':
-        instructor.delete()
-        return redirect('/instructor/')
-    return render(request, 'delete_instructor_form.html', {'instructor': instructor})
+# def delete_instructor(request, slug1,slug2, instructor_id):
+#     instructor = get_object_or_404(Instructor, pk=instructor_id)
+#     if request.method == 'POST':
+#         instructor.delete()
+#         return redirect('/instructor/')
+#     return render(request, 'instructor_form/delete_instructor_form.html', {'instructor': instructor})
+#

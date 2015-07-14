@@ -11,13 +11,13 @@
 
     <body>
         <nav>
-            <img src="{% static 'images/gdi_logo.png' %}" alt='gdi logo'>
+            <a href='/'><img src="{% static 'images/gdi_logo.png' %}" alt='gdi logo'></a>
             <ul class="flex-container">
                 <li class="flex-item"><a href="/course/">Course</a></li>
                 <li class="flex-item"><a href="/instructor/">Instructor</a></li>
                 <li class="flex-item"><a href="/getting_started/">Getting Started</a></li>
                 {% if user.is_authenticated %}
-                hello {{ user.username }}
+                <li class="flex-item">hello {{ user.username }}</li>
                 {% else %}
                 <li class="flex-item"><a href="/login/">Log In As An Instructor</a></li>
                 {% endif %}

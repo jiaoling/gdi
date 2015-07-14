@@ -11,12 +11,13 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include('course.urls'), name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^course/', include('course.urls')),
+    url(r'^login/', views.user_login, name='login'),
     url(r'^instructor/', include('instructor.urls')),
     url(r'^getting_started/', include('getting_started.urls')),
     # url(r'^register/', views.register, name='register'),
-    url(r'^login/', views.user_login, name='login'),
+
     url(r'^restricted/', views.restricted, name='restricted'),
     url(r'^logout/', views.user_logout, name='logout'),
 ]

@@ -1,12 +1,20 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, loader
 from instructor.forms import *
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from course.models import *
+from django.template import Context
 
 
+def index(request):
+    courses = Course.objects.all().order_by('start_date')
+    t = loader.get_template('index.html')
+    # added topics and instructors so the template could access names of those objects
+    c = Context({'courses': courses})
+    return HttpResponse(t.render(c))
 
 # following the tutorial of tango with django
 def register(request):

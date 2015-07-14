@@ -1,2 +1,5 @@
-# gdi
-master local path: /Users/cjlchaos/Documents/gdi_July8th
+# This is a course website holding curriculum for Girl Develop It -Raleigh/Durham Chapter
+
+Feature:  Django Framework
+
+

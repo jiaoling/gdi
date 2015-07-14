@@ -8,6 +8,8 @@ h1 {
 }
 nav {
     background-color:#F05B62;
+    opacity: 0.95;
+
 }
 nav img {
     float:left;
@@ -51,7 +53,7 @@ table.course_table_list th {
     font-size: 15px;
     padding: 10px;
     background:#F05B62;
-    opacity:0.7;
+    opacity:0.91;
     border-bottom: 1px solid #F05B62;
 }
 table.course_table_list td {

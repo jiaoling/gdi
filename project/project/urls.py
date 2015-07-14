@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^course/', include('course.urls')),
     url(r'^instructor/', include('instructor.urls')),
     url(r'^getting_started/', include('getting_started.urls')),
-    url(r'^register/', views.register, name='register'),
+    # url(r'^register/', views.register, name='register'),
     url(r'^login/', views.user_login, name='login'),
     url(r'^restricted/', views.restricted, name='restricted'),
     url(r'^logout/', views.user_logout, name='logout'),

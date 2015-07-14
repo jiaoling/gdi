@@ -10,43 +10,45 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen/chosen.css"/>
 
 {% if course%}
-    <p>{{course.c_name}}</p>
+    <h1>{{course.c_name}}</h1>
     <!--buttons-->
-    <a href="/course/edit/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="Edit Your Course" /></a>
-    <div id='content'>
-        <div id='left' style="float:left width:70%">
-          <p>Start Date:{{course.start_date}} &nbsp&nbsp&nbsp End Date:{{course.end_date}} &nbsp&nbsp&nbsp Level:{{course.level}} &nbsp&nbsp&nbsp
-          <a href={{course.meetup_page}}>MeetUp Link</a></p>
-          <p>Description:{{course.description}}</p>
-          <p>Prerequisite:{{course.prerequisite}}</p>
+    <div id='course_view_view'>
+        <div id='course_info_view'>
+            <p><a href="/course/edit/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="Edit Your Course" /></a></p>
+            <p><i>Start Date:&nbsp</i>{{course.start_date}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <i>End Date:&nbsp</i>{{course.end_date}}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i>Level:&nbsp</i>{{course.level}}</p>
+            <p><i>MeetUp Link:&nbsp</i><a href={{course.meetup_page}}>{{course.meetup_page}}</a></p>
+            <p><i>Description:&nbsp</i>{{course.description}}</p>
+            <p><i>Prerequisite:&nbsp</i>{{course.prerequisite}}</p>
+
+            <h3>Materials&nbsp</h3>
+            <p><a href="/course/material_create/"><input type="button" value="Add New Material" /></a></p>
+            <!--add editing button for materials-->
+            {%if material_slide%}
+            {% for slide in material_slide%}
+            <p><a href="{{slide.content.url}}">Slides: {{slide.name}} </a>&nbsp&nbsp&nbsp</p>
+            <a href="/course/material_edit/{{slide.name|slugify}}-{{slide.pk}}"><input type="button" value="Edit Your Material" /></a>
+            <a href="/course/material_delete/{{slide.name|slugify}}-{{slide.pk}}"><input type="button" value="Delete This Material" /></a>
+            {% endfor%}
+            {% else %}
+            <p> No record</p>
+            {%endif%}
+
+            {% if material_code%}
+            {% for code in material_code%}
+            <p><a href="{{code.content.url}}">Codes: {{code.name}}</a>&nbsp&nbsp&nbsp</p>
+            <a href="/course/material_edit/{{code.name|slugify}}-{{code.pk}}"><input type="button" value="Edit Your Material" /></a>
+            <a href="/course/material_delete/{{code.name|slugify}}-{{code.pk}}"><input type="button" value="Delete This Material" /></a>
+            {% endfor%}
+            {% endif%}
         </div>
 
-        <div id='materials'>
-            <p>Materials</p>
-            <p><a href="/course/material_create/"><input type="button" value="Add New Material" /></a></p>
-                     <!--add editing button for materials-->
-              {%if material_slide%}
-                {% for slide in material_slide%}
-                    <p><a href="{{slide.content.url}}">Slides: {{slide.name}} </a>&nbsp&nbsp&nbsp</p>
-                    <a href="/course/material_edit/{{slide.name|slugify}}-{{slide.pk}}"><input type="button" value="Edit Your Material" /></a>
-                    <a href="/course/material_delete/{{slide.name|slugify}}-{{slide.pk}}"><input type="button" value="Delete This Material" /></a>
-                {% endfor%}
-              {% else %}
-                <p> No record</p>
-              {%endif%}
-        </div>
-        <div id='code'>
-              {% if material_code%}
-                {% for code in material_code%}
-                    <p><a href="{{code.content.url}}">Codes: {{code.name}}</a>&nbsp&nbsp&nbsp</p>
-                    <a href="/course/material_edit/{{code.name|slugify}}-{{code.pk}}"><input type="button" value="Edit Your Material" /></a>
-                    <a href="/course/material_delete/{{code.name|slugify}}-{{code.pk}}"><input type="button" value="Delete This Material" /></a>
-                {% endfor%}
-              {% endif%}
-        </div>
-        <div id='right' style="float:right">
+
+        <div id='course_instructor_view'>
+          <p><img src="{{course.instructor.pic.url}}"/></p>
           <a href="/instructor/{{course.instructor.f_name|slugify}}-{{course.instructor.l_name|slugify}}-{{course.instructor.pk}}">{{course.instructor}}</a>
         </div>
     </div>
+
+<div class="clear"></div>
 {% endif %}
 {% endblock %}

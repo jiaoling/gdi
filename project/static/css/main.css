@@ -1,0 +1,140 @@
+body {
+    width:100%;
+    display:inline-block;
+    font-family:'Abel', sans-serif;;
+}
+h1 {
+    margin-left:50px;
+}
+nav {
+    background-color:#F05B62;
+}
+nav img {
+    float:left;
+    width:35%;
+}
+nav ul {
+    float:right;
+    width:65%;
+}
+nav a {
+    color: #ffffff;
+    font-style:italic;
+}
+.flex-container {
+    list-style: none;
+    justify-content: center;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-flex-wrap: nowrap;
+    -moz-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+.flex-item {
+    margin-top: 60px;
+    margin-left:30px;
+    font-size: 17px;
+    text-align: left;
+}
+
+/* stylesheet for course_list */
+table.course_table_list {
+    margin:0px auto;
+    width:95%
+}
+table.course_table_list th {
+    color:#333333;
+    font-size: 15px;
+    padding: 10px;
+    background:#F05B62;
+    opacity:0.7;
+    border-bottom: 1px solid #F05B62;
+}
+table.course_table_list td {
+    border-width: 1px;
+    padding: 10px;
+    color:#333333;
+    background-color: #ffffff;
+    border-bottom: 1px solid #F05B62;
+}
+
+/* stylesheet for instructor_list */
+.instructor_box_list {
+    margin:0px auto;
+    width:70%;
+    height:140px;
+}
+.instructor_img_list {
+    float:left;
+    width:5%;
+}
+.instructor_img_list img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+}
+.instructor_info_list {
+    float:right;
+    width:65%;
+    padding-top:15px;
+}
+
+/* stylesheet for course_view */
+#course_view_view {
+    width:90%;
+    margin:auto;
+}
+#course_info_view {
+    float:left;
+    width:60%;
+}
+#course_instructor_view {
+    float:right;
+    width:30%;
+}
+#course_instructor_view img {
+    border-radius:50%;
+    width:120px;
+    height:120px;
+}
+
+/* stylesheet for instructor_view */
+#instructor_view_view {
+    width:90%;
+    margin:auto;
+}
+#instructor_info_view {
+    float:left;
+    width:50%;
+}
+#instructor_img_view {
+    float:right;
+    width:40%;
+}
+#instructor_img_view img {
+    width:250px;
+    height:250px;
+}
+
+/* stylesheet for getting started */
+#sequences {
+    width:80%;
+    margin:auto;
+}
+
+
+.form {
+    width:80%;
+    margin:auto;
+}
+label {
+    text-align:right;
+}
+
+.clear{
+	clear:both;
+}

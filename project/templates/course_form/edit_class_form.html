@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Edit Course{% endblock %}
 {% block content %}
-  <h2>Edit Your Course</h2>
+<h1>Edit Your Course</h1>
+<div class="form">
     <form action="" method="post">{% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
@@ -11,7 +12,8 @@
             {{ field }}
         </div>
     {% endfor %}
-  <input type="submit" value="Submit" /></a>
-  <a href="/course/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="cancel" /></a>
-  </form>
+        <input type="submit" value="Submit" /></a>
+        <a href="/course/{{course.c_name|slugify}}-{{course.pk}}"><input type="button" value="cancel" /></a>
+    </form>
+</div>
 {% endblock %}

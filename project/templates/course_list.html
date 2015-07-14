@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<table>
+<table class="course_table_list">
     <tr>
-        <th>Course></th>
-        <th>Instructor></th>
+        <th>Course</th>
+        <th>Instructor</th>
         <th>Level</th>
         <th>Start Date</th>
-        <th>End Date></th>
+        <th>End Date</th>
         <th>MeetUp Link</th>
         <th>Topic</th>
     </tr>
@@ -18,7 +18,7 @@
             <td>{{course.level}}</td>
             <td>{{course.start_date}}</td>
             <td>{{course.end_date}}</td>
-            <td><a href="{{course.meetup_page}}"> {{course.meetup_page}}</a></td>
+            <td><a href="{{course.meetup_page}}">{{course.meetup_page}}</a></td>
             <td>{{course.topic}}</td>
         </tr>
     {% endfor %}

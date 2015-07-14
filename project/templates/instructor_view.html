@@ -2,21 +2,37 @@
 
 {% extends "base.html" %}
 {% block content %}
-{% if instructor.pic %}
-<p><img src="{{ instructor.pic.url }}" width="200"/></p>
-{% endif%}
 <h1>{{instructor.f_name}} {{instructor.l_name}}</h1>
-<p><a href="/instructor/edit/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}"><input type="button" value="Edit Your Profile" /></a></p>
-<div class="instructor-contact"><div class="contact-menu">Email: {{instructor.email}}</div><div class="contact-menu">Twitter: {{instructor.twitter}}</div><div class="contact-menu">Website: {{instructor.website}} </div><div class="contact-menu">GitHub: {{instructor.git}}</div>
-<h2>Bio</h2>
-<p>{{instructor.bio}}</p>
-<h2>Courses Taught</h2>
-<table>
-    {% if courses %}
-	{% for course in courses %}
-	<tr><td>{{course.start_date}}</td><td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</a></td></tr>
-	{% endfor %}
-    {% endif %}
-</table>
+<div id="instructor_view_view">
+    <div id="instructor_info_view">
+        <p><a href="/instructor/edit/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}"><input type="button" value="Edit Your Profile" /></a></p>
+        <div><i>Email: </i>{{instructor.email}}</div>
+        <div><i>Twitter: </i><a href="{{instructor.twitter}}">{{instructor.twitter}}</a></div>
+        <div><i>Website: </i><a href="{{instructor.website}}">{{instructor.website}}</a></div>
+        <div><i>GitHub: </i><a href="{{instructor.git}}">{{instructor.git}}</a></div>
+
+        <h3>Bio</h3>
+        <p>{{instructor.bio}}</p>
+
+        <h2>Courses Taught</h2>
+        <table class="course_table_list">
+            {% if courses %}
+            {% for course in courses %}
+            <tr>
+                <td>{{course.start_date}}</td>
+                <td><a href="/course/{{course.c_name|slugify}}-{{course.pk}}">{{course.c_name}}</a></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+
+    <div id="instructor_img_view">
+        {% if instructor.pic %}
+        <p><img src="{{ instructor.pic.url }}" /></p>
+    </div>
 </div>
+
+<div class="clear"></div>
+{% endif%}
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<h1>Login to GDI Course Website</h1><br>
+<h1>Login As an Instructor</h1><br>
 <div class="form">
     <form id="login_form" method="post" action="/login/"> {% csrf_token %}
         <label>Username:</label>  <input type="text" name="username" value="" size="50" /><br>
@@ -10,3 +10,4 @@
     </form>
 </div>
 {% endblock %}
+

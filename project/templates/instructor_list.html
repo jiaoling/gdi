@@ -5,14 +5,18 @@
 <h1>Instructors List</h1>
 {% if instructors %}
 {% for instructor in instructors %}
-<div class="instructor-box">
-	<img src="{{instructor.pic.url}}" width="200" />
-	<div class="instructor-list-text">
-        <p><a href="/instructor/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}">
-            {{instructor.f_name}} {{instructor.l_name}}</a></p>
+<div class="instructor_box_list">
+    <div class="instructor_img_list">
+        <img src="{{instructor.pic.url}}"/>
+    </div>
+
+    <div class="instructor_info_list">
+        <p><a href="/instructor/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}">{{instructor.f_name}} {{instructor.l_name}}</a></p>
 		<p>{{instructor.bio}}</p>
 	</div>
 </div>
+
+<div class="clear"></div>
 {% endfor %}
 {% endif %}
 {% endblock %}

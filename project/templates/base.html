@@ -1,24 +1,37 @@
 <!doctype HTML>
+{% load staticfiles %}
 <html>
-  <head>
-    <title> Course Homepage</title>
-  </head>
-  <body>
-    <nav>
-      <a href="#"><img src='images/gdi.png' alt='gdi logo'></a>
-      <a href="/course/">Courses</a> |
-      <a href="/instructor">Instructors</a> |
-      <a href="/getting_started">Getting Started</a>
-      {% if user.is_authenticated %}
-         hello {{ user.username }}
-      {%else%}
-        <a href="/login/">Log In</a>
-        <a href="/register/">Register Here</a>
-      {% endif %}
-      {% if user.is_authenticated %}
-       <a href="/logout/">Logout</a>
-       {% endif %}
-    </nav>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static "css/main.css" %}">
+        <title> Course Homepage</title>
+    </head>
+
+    <body>
+        <nav>
+            <img src="{% static "images/gdi_logo.png" %}" alt='gdi logo'>
+            <ul class="flex-container">
+                <li class="flex-item"><a href="/course/">Course</a></li>
+                <li class="flex-item"><a href="/instructor/">Instructor</a></li>
+                <li class="flex-item"><a href="/getting_started/">Getting Started</a></li>
+                {% if user.is_authenticated %}
+                hello {{ user.username }}
+                {% else %}
+                <li class="flex-item"><a href="/login/">Log In</a></li>
+                <li class="flex-item"><a href="/register/">Register Here</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="flex-item"><a href="/logout/">Logout</a></li>
+                {% endif %}
+            </ul>
+
+            <div class="clear"></div>
+        </nav>
+        <br>
+        <br>
+        <br>
 
     {% block content%}
     {% endblock%}

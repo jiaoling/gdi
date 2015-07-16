@@ -73,6 +73,13 @@ class Course(models.Model):
     def __unicode__(self):
         return self.c_name
 
+# @receiver(post_delete, sender=Course)
+# def stuff_post_delete_handler(sender, **kwargs):
+#     Course = kwargs['instance']
+#     storage,path = Course.content.storage, Course.content.path
+#     storage.delete(path)
+
+
 def generate_filename(instance, filename):
     ext = filename.split('.')[-1]
     return 'stuff_materials/'+str(int(time()))+'.'+ext
@@ -82,13 +89,15 @@ class Material(models.Model):
     type = models.CharField(max_length=20)
     course = models.ForeignKey(Course)
     date = models.DateTimeField(blank=True, null=True)
-    content = models.FileField(upload_to=generate_filename, default=False)
+    content = models.FileField(upload_to=generate_filename)
 
     def __unicode__(self):
         return self.name
 
-@receiver(post_delete, sender=Instructor)
+@receiver(post_delete, sender=Material)
 def stuff_post_delete_handler(sender, **kwargs):
-    Instructor = kwargs['instance']
-    storage,path = Instructor.content.storage, Instructor.content.path
+    Material = kwargs['instance']
+    storage,path = Material.content.storage, Material.content.path
     storage.delete(path)
+
+

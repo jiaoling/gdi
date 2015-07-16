@@ -56,9 +56,9 @@ def edit_course(request, slug, course_id):
 #     return render(request, 'course_form/delete_class_form.html', {'course': course})
 
 #material
-def create_material(request):
+def create_material(request, slug, course_id):
     if request.method == 'POST':
-        form = MaterialForm(request.POST)
+        form = MaterialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/course/')
@@ -66,7 +66,7 @@ def create_material(request):
         form = MaterialForm()
     return render(request, 'material_form/add_material_form.html', {'form': form})
 
-def edit_material(request,slug, material_id):
+def edit_material(request,slug1,course_id,slug2, material_id):
     material = get_object_or_404(Material, pk=material_id)
     if request.method == 'POST':
         form = MaterialForm(request.POST,request.FILES, instance=material)
@@ -77,7 +77,7 @@ def edit_material(request,slug, material_id):
         form = MaterialForm(instance=material)
     return render(request, 'material_form/edit_material_form.html', {'form': form, 'material':material })
 
-def delete_material(request, slug, material_id):
+def delete_material(request, slug1,course_id,slug2, material_id):
     material = get_object_or_404(Material, pk=material_id)
     if request.method == 'POST':
         material.delete()

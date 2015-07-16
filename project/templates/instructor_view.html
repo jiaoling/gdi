@@ -5,7 +5,7 @@
 <h1>{{instructor.f_name}} {{instructor.l_name}}</h1>
 <div id="instructor_view_view">
     <div id="instructor_info_view">
-        <p><a href="/instructor/edit/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}"><input type="button" value="Edit Your Profile" /></a></p>
+        <p><a href="/instructor/{{instructor.f_name|slugify}}-{{instructor.l_name|slugify}}-{{instructor.pk}}/edit/"><input type="button" value="Edit Your Profile" /></a></p>
         <div><i>Email: </i>{{instructor.email}}</div>
         <div><i>Twitter: </i><a href="{{instructor.twitter}}">{{instructor.twitter}}</a></div>
         <div><i>Website: </i><a href="{{instructor.website}}">{{instructor.website}}</a></div>

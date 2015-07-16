@@ -90,7 +90,7 @@ class Material(models.Model):
     type = models.CharField(max_length=4, choices=TYPE_CHOICE, default='link')
     course = models.ForeignKey(Course)
     date = models.DateTimeField(blank=True, null=True)
-    link_content = models.URLField(max_length=500, null=True)
+    link_content = models.URLField(max_length=500, null=True, blank=True)
     content = models.FileField(upload_to=generate_filename, null=True,blank=True)
 
     def __unicode__(self):

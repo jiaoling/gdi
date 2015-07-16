@@ -15,12 +15,12 @@ def course_list(request):
 
 def course_view(request,slug, pk):
     course = get_object_or_404(Course, pk=pk)
-    material_slide = Material.objects.filter(type= 'slide', course_id = pk)
-    material_code = Material.objects.filter(type= 'code', course_id = pk)
+    links = Material.objects.filter(type= 'link', course_id = pk)
+    files = Material.objects.filter(type= 'file', course_id = pk)
     return render(request, 'course_view.html', {'course':course,
                                                 'pk':pk,
-                                                'material_slide':material_slide,
-                                                'material_code':material_code})
+                                                'links':links,
+                                                'files':files})
 
 def redirect_to_page(request, pk):
     course = get_object_or_404(Course, pk=pk)
@@ -76,6 +76,8 @@ def edit_material(request,slug1,course_id,slug2, material_id):
     else:
         form = MaterialForm(instance=material)
     return render(request, 'material_form/edit_material_form.html', {'form': form, 'material':material })
+
+
 
 def delete_material(request, slug1,course_id,slug2, material_id):
     material = get_object_or_404(Material, pk=material_id)

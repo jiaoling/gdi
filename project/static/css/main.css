@@ -118,6 +118,7 @@ table.course_table_list td {
     width:40%;
 }
 #instructor_img_view img {
+    border-radius:50%;
     width:250px;
     height:250px;
 }

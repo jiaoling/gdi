@@ -85,11 +85,13 @@ def generate_filename(instance, filename):
     return 'stuff_materials/'+str(int(time()))+'.'+ext
 
 class Material(models.Model):
+    TYPE_CHOICE = (('link', 'add a link'), ('file', 'add a file'))
     name = models.CharField(max_length=100)
-    type = models.CharField(max_length=20)
+    type = models.CharField(max_length=4, choices=TYPE_CHOICE, default='link')
     course = models.ForeignKey(Course)
     date = models.DateTimeField(blank=True, null=True)
-    content = models.FileField(upload_to=generate_filename)
+    link_content = models.URLField(max_length=500, null=True)
+    content = models.FileField(upload_to=generate_filename, null=True,blank=True)
 
     def __unicode__(self):
         return self.name
@@ -97,7 +99,8 @@ class Material(models.Model):
 @receiver(post_delete, sender=Material)
 def stuff_post_delete_handler(sender, **kwargs):
     Material = kwargs['instance']
-    storage,path = Material.content.storage, Material.content.path
-    storage.delete(path)
+    if Material.content:
+        storage,path = Material.content.storage, Material.content.path
+        storage.delete(path)
 
 

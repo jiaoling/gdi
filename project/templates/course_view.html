@@ -20,24 +20,25 @@
             <p><i>Description:&nbsp</i>{{course.description}}</p>
             <p><i>Prerequisite:&nbsp</i>{{course.prerequisite}}</p>
 
-            <h3>Materials&nbsp</h3>
+            <h2>Materials</h2>
             <p><a href="/course/{{course.c_name|slugify}}-{{course.pk}}/material_create/"><input type="button" value="Add New Material" /></a></p>
             <!--add editing button for materials-->
-            {%if material_slide%}
-            {% for slide in material_slide%}
-            <p><a href="{{slide.content.url}}">Slides: {{slide.name}} </a>&nbsp&nbsp&nbsp</p>
-            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{slide.name|slugify}}-{{slide.pk}}/material_edit/"><input type="button" value="Edit Your Material" /></a>
-            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{slide.name|slugify}}-{{slide.pk}}/material_delete/"><input type="button" value="Delete This Material" /></a>
+            <h4> Slide Links: </h4>
+            {%if links %}
+            {% for link in links%}
+            <p><a href="{{link.link_content}}"> {{link.name}} </a>&nbsp&nbsp&nbsp</p>
+            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{link.name|slugify}}-{{link.pk}}/material_edit/"><input type="button" value="Edit the Material" /></a>
+            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{link.name|slugify}}-{{link.pk}}/material_delete/"><input type="button" value="Delete the Material" /></a>
             {% endfor%}
             {% else %}
             <p> No record</p>
             {%endif%}
-
-            {% if material_code%}
-            {% for code in material_code%}
-            <p><a href="{{code.content.url}}">Codes: {{code.name}}</a>&nbsp&nbsp&nbsp</p>
-            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{code.name|slugify}}-{{code.pk}}/material_edit"><input type="button" value="Edit Your Material" /></a>
-            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{code.name|slugify}}-{{code.pk}}/material_delete"><input type="button" value="Delete This Material" /></a>
+            <h4>Files: </h4>
+            {% if files%}
+            {% for file in files%}
+            <p><a href="{{file.content.url}}">{{file.name}}</a>&nbsp&nbsp&nbsp</p>
+            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{file.name|slugify}}-{{file.pk}}/material_edit"><input type="button" value="Edit Your Material" /></a>
+            <a href="/course/{{course.c_name|slugify}}-{{course.pk}}/{{file.name|slugify}}-{{file.pk}}/material_delete"><input type="button" value="Delete This Material" /></a>
             {% endfor%}
             {% endif%}
         </div>

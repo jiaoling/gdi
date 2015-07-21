@@ -29,7 +29,7 @@ class Instructor(models.Model):
 
 
     def __unicode__(self):
-        name = self.f_name + self.l_name
+        name = self.f_name + ' '+ self.l_name
         return name
 
     @permalink

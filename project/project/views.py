@@ -11,10 +11,11 @@ from django.template import Context
 
 def index(request):
     courses = Course.objects.all().order_by('start_date')
-    t = loader.get_template('index.html')
+    #t = loader.get_template('index.html')
     # added topics and instructors so the template could access names of those objects
-    c = Context({'courses': courses})
-    return HttpResponse(t.render(c))
+    #c = Context({'courses': courses})
+    #return HttpResponse(t.render(c))
+    return render(request, 'course_list.html', {'courses': courses})
 
 # following the tutorial of tango with django
 def register(request):

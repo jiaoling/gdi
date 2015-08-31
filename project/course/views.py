@@ -17,10 +17,19 @@ def course_view(request,slug, pk):
     course = get_object_or_404(Course, pk=pk)
     links = Material.objects.filter(type= 'link', course_id = pk)
     files = Material.objects.filter(type= 'file', course_id = pk)
-    return render(request, 'course_view.html', {'course':course,
-                                                'pk':pk,
-                                                'links':links,
-                                                'files':files})
+
+    #need to change this to
+    if course.instructor.user == request.user:
+        return render(request, 'course_view.html', {'course':course,
+                                                    'pk':pk,
+                                                    'links':links,
+                                                    'files':files})
+        
+    else:
+        return render(request, 'course_view_anon.html', {'course':course,
+                                                    'pk':pk,
+                                                    'links':links,
+                                                    'files':files})
 
 def redirect_to_page(request, pk):
     course = get_object_or_404(Course, pk=pk)
